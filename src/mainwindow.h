@@ -18,7 +18,7 @@ public:
     ~MainWindow();
 
 public slots:
-    void showMessage(QString &message);
+    void showMessage(const QString &message);
 
 private:
     void createActions();

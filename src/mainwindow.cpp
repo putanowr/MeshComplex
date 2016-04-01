@@ -27,7 +27,7 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
-void MainWindow::showMessage(QString &message)
+void MainWindow::showMessage(const QString &message)
 {
    ui->feedbackText->append(message);
 }
@@ -37,7 +37,7 @@ void MainWindow::setupConnections() {
   connect(addPointAct, SIGNAL(triggered(bool)), mv, SLOT(setModeToAddPoint(bool)));
   connect(addEdgeAct, SIGNAL(triggered(bool)), mv, SLOT(setModeToAddEdge(bool)));
   connect(addCellAct, SIGNAL(triggered(bool)), mv, SLOT(setModeToAddCell(bool)));
-  connect(mv, SIGNAL(message(QString&)), this, SLOT(showMessage(QString&)));
+  connect(mv, SIGNAL(message(const QString&)), this, SLOT(showMessage(const QString&)));
 }
 
 void MainWindow::createActions() {

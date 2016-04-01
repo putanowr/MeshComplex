@@ -22,7 +22,7 @@ public:
 protected:
     virtual void mousePressEvent(QMouseEvent *event);
 signals:
-    void message(QString &msg);
+    void message(const QString &msg);
 
 public slots:
     void setMode(Mode mode) { myMode = mode; myStep = 0;}
