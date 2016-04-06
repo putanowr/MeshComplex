@@ -3,6 +3,8 @@
 
 #include <QGraphicsView>
 
+class QPointF;
+
 class MeshView : public QGraphicsView
 {
   Q_OBJECT
@@ -10,7 +12,7 @@ class MeshView : public QGraphicsView
   enum class Mode
   {
     NO_ACTION,
-    ADD_POINT,
+    ADD_NODE,
     ADD_EDGE,
     ADD_CELL
   };
@@ -21,17 +23,19 @@ public:
     explicit MeshView(QWidget *parent = 0);
 protected:
     virtual void mousePressEvent(QMouseEvent *event);
+
 signals:
     void message(const QString &msg);
+    void addNode(const QPointF &pos);
 
 public slots:
     void setMode(Mode mode) { myMode = mode; myStep = 0;}
-    void setModeToAddPoint(bool) {setMode(Mode::ADD_POINT);}
-    void setModeToAddEdge(bool)  {setMode(Mode::ADD_EDGE);}
-    void setModeToAddCell(bool)  {setMode(Mode::ADD_CELL);}
+    void setModeToAddNode(bool) {setMode(Mode::ADD_NODE);}
+    void setModeToAddEdge(bool) {setMode(Mode::ADD_EDGE);}
+    void setModeToAddCell(bool) {setMode(Mode::ADD_CELL);}
 
 private:
-    void addPoint(QMouseEvent *event);
+    void addNode(QMouseEvent *event);
     void addEdge(QMouseEvent *event);
     void addCell(ItemList &items);
 

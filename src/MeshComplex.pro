@@ -6,8 +6,6 @@
 
 QT       += core gui
 
-QMAKE_CXXFLAGS += "-std=c++11"
-
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = MeshComplex
@@ -18,11 +16,30 @@ SOURCES += main.cpp\
     meshscene.cpp \
         mainwindow.cpp \
     meshview.cpp \
-    cmapplication.cpp
+    cmapplication.cpp \
+    meshcomplex.cpp \
+    graphicsnode.cpp \
+    graphiscedge.cpp \
+    graphisccell.cpp
 
 HEADERS  += mainwindow.h \
     meshscene.h \
     meshview.h \
-    cmapplication.h
+    cmapplication.h \
+    meshcomplex.h \
+    graphicsnode.h \
+    graphiscedge.h \
+    zipper.h \
+    graphicscell.h
 
 FORMS    += mainwindow.ui
+
+LP = $$(LD_LIBRARY_PATH)
+LP = $$replace(LP, ":", " ")
+for (var, $$list($$LP)) {
+LIBS += -L$$var
+}
+message($$LIBS)
+QMAKE_CXXFLAGS += "-std=c++11"
+
+LIBS += -lMOAB

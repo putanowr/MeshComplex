@@ -1,0 +1,3 @@
+[submodule "externals/qtpropertybrowser"]
+	path = externals/qtpropertybrowser
+	url = https://github.com/intbots/QtPropertyBrowser.git

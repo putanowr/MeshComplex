@@ -13,8 +13,8 @@ MeshView::MeshView(QWidget *parent) : QGraphicsView(parent), myStep(0)
 void MeshView::mousePressEvent(QMouseEvent *event)
 {
   switch(myMode) {
-    case Mode::ADD_POINT :
-      addPoint(event);
+    case Mode::ADD_NODE :
+      addNode(event);
       break;
     case Mode::ADD_EDGE :
       myStep++;
@@ -55,17 +55,6 @@ void MeshView::addCell(ItemList &items)
    }
 }
 
-void MeshView::addPoint(QMouseEvent *event) {
- if (QGraphicsItem *item = itemAt(event->pos()))
- {
- }
- else {
-   double r=5;
-   QPointF dr(r,r);
-   auto bb = QRectF(-dr,dr);
-   auto *ellipse = this->scene()->addEllipse(bb);
-   ellipse->setPos(this->mapToScene(event->pos()));
-
- }
-
+void MeshView::addNode(QMouseEvent *event) {
+  emit addNode(this->mapToScene(event->pos()));
 }
